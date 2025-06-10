@@ -30,6 +30,14 @@ export class TasksService {
     this.tasks.push(task);
     return task;
   }
+  updateStatus(id: string, status: TaskStatus): ITask {
+    const task = this.tasks.find((task) => task.id === id);
+    if (task) {
+      task.status = status;
+      return task;
+    }
+    throw new Error(`Task with id ${id} not found`);
+  }
   deleteTask (id:string):ITask[]{
     if(!id){
       throw new Error('please provide an valid id')
