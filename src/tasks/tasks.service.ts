@@ -30,4 +30,12 @@ export class TasksService {
     this.tasks.push(task);
     return task;
   }
+  deleteTask (id:string):ITask[]{
+    if(!id){
+      throw new Error('please provide an valid id')
+    }
+    const remainingTasks = this.tasks.filter((task) => task.id !== id);
+    this.tasks = [...remainingTasks];
+    return this.tasks
+  }
 }
